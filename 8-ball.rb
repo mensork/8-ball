@@ -7,16 +7,19 @@ if (Gem.win_platform?)
   end
 end
 
+def readlines(file_name)
+  file = File.new(file_name, "r:UTF-8")
+  array = file.readlines
+  file.close
+  array
+end
+
 greet = __dir__ + "/data/greetings.txt"
 answ = __dir__ + "/data/answers.txt"
 
 if File.exist?(greet) && File.exist?(answ)
-  file = File.new(greet, "r:UTF-8")
-  greetings = file.readlines
-  file.close
-  file = File.new(answ, "r:UTF-8")
-  answers = file.readlines
-  file.close
+  greetings = readlines(greet)
+  answers = readlines(answ)
 else
   puts "Файл не найден"
 end
